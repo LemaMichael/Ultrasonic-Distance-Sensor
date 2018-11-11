@@ -25,11 +25,20 @@
  */
 
 const int pingPin = 11;
+const int vibratePin = 7;
 unsigned int duration, inches;
 
 void setup()
 {
     Serial.begin(9600);
+}
+
+void checkDistance(int inches) {
+    if (inches < 10) {
+        digitalWrite(vibratePin, HIGH);
+    } else {
+        digitalWrite(vibratePin, LOW);
+    }
 }
 
 void loop()
@@ -43,6 +52,10 @@ void loop()
     pinMode(pingPin, INPUT); //  Set pin to INPUT
     duration = pulseIn(pingPin, HIGH); // Read echo pulse
     inches = duration / 74 / 2; // Convert to inches
+    checkDistance(inches);
     Serial.println(inches); // Display Result
     delay(200); // Short Delay
+    
+    // VIBRATION MOTOR
+    pinMode(vibratePin, OUTPUT);
 }
