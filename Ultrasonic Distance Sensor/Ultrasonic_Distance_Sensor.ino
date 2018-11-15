@@ -36,7 +36,7 @@ void setup()
 }
 
 void checkDistance(int inches) {
-    if (inches < 10) {
+    if (inches < 11) {
         digitalWrite(vibratePin, HIGH);
         Serial.println("Vibration On");
     } else {
@@ -45,37 +45,20 @@ void checkDistance(int inches) {
     }
 }
 
-//void loop()
-//{
-//    pinMode(pingPin, OUTPUT); // Set pin to OUTPUT
-//    digitalWrite(pingPin, LOW); // Ensure pin is low
-//    delayMicroseconds(2);
-//    digitalWrite(pingPin, HIGH); // Start ranging
-//    delayMicroseconds(5); // With 5 microsecond burst
-//    digitalWrite(pingPin, LOW); // End Ranging
-//    pinMode(pingPin, INPUT); //  Set pin to INPUT
-//    duration = pulseIn(pingPin, HIGH); // Read echo pulse
-//    inches = duration / 74 / 2; // Convert to inches
-//    checkDistance(inches);
-//    Serial.println(inches); // Display Result
-//    delay(200); // Short Delay
-//
-//    // VIBRATION MOTOR
-//    pinMode(vibratePin, OUTPUT);
-//}
-
 void loop() {
-    DDRB |= (1<<SIG); // Set PB3 to OUTPUT PIN. 0000 1000
-    PORTB &= ~(1<<SIG); // Ensure pin is low. 1111 0111
+    DDRB |= (1<<SIG); // Set PB3 to OUTPUT PIN.
+    PORTB &= ~(1<<SIG); // Ensure pin is low.
     delayMicroseconds(2);
     PORTB |= (1<<SIG); // Start ranging.
     delayMicroseconds(5); // With 5 microsecond burst
     PORTB &= ~(1<<SIG); // End Ranging
     DDRB &= ~(1<<SIG); // Set pin to INPUT
-    duration = pulseIn(pingPin, HIGH);
+    duration = pulseIn(pingPin, HIGH); // Read echo pulse
     inches = duration / 74 / 2; // Convert to inches
     checkDistance(inches);
     Serial.println(inches); // Display Result
     delay(200); // Short Delay
+    
+    // VIBRATION MOTOR
     pinMode(vibratePin, OUTPUT);
 }
