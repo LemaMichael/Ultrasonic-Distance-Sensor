@@ -65,13 +65,13 @@ void checkDistance(int inches) {
 //}
 
 void loop() {
-    DDRB |= 0x08; // Set PB3 to OUTPUT PIN. 0000 1000
-    PORTB &= 0xF7; // Ensure pin is low. 1111 0111
+    DDRB |= (1<<SIG); // Set PB3 to OUTPUT PIN. 0000 1000
+    PORTB &= ~(1<<SIG); // Ensure pin is low. 1111 0111
     delayMicroseconds(2);
-    PORTB |= 0x08; // Start ranging.
+    PORTB |= (1<<SIG); // Start ranging.
     delayMicroseconds(5); // With 5 microsecond burst
-    PORTB &= 0xF7; // End Ranging
-    DDRB &= 0xF7; // Set pin to INPUT
+    PORTB &= ~(1<<SIG); // End Ranging
+    DDRB &= ~(1<<SIG); // Set pin to INPUT
     duration = pulseIn(pingPin, HIGH);
     inches = duration / 74 / 2; // Convert to inches
     checkDistance(inches);
