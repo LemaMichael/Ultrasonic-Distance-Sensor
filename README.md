@@ -7,5 +7,5 @@ Parallax PING Ultrasonic Sensor
 
 ## Setup
 Please read the comments in the ino file. 
-The ino file can be downloaded [here](https://github.com/LemaMichael/Ultrasonic-Distance-Sensor/files/2569056/Ultrasonic_Distance_Sensor.ino.zip)
+The ino file can be downloaded [here](https://github.com/LemaMichael/Ultrasonic-Distance-Sensor/files/2583384/Ultrasonic_Distance_Sensor.ino.zip)
 
